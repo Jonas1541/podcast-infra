@@ -1,0 +1,22 @@
+podcast.vps-kinghost.net {
+    
+    # Opcional: Comprimir as respostas para ficar mais rápido
+    encode zstd gzip
+
+    # 1. MinIO (Arquivos Públicos) - Regra Específica
+    handle /storage/* {
+        uri strip_prefix /storage
+        reverse_proxy minio:9000
+    }
+
+    # 2. Backend API - Regra Específica
+    handle /api/* {
+        reverse_proxy api:8080
+    }
+
+    # 3. Frontend (Rota Padrão) - Regra Genérica (Catch-all)
+    # Fica por último para pegar "tudo o que sobrou"
+    handle {
+        reverse_proxy frontend:80
+    }
+}

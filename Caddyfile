@@ -1,4 +1,4 @@
-podcast.vps-kinghost.net {
+{$DOMAIN_NAME} {
     
     # Opcional: Comprimir as respostas para ficar mais rápido
     encode zstd gzip

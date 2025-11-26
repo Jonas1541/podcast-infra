@@ -13,6 +13,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile # Monta a configuração
       - caddy_data:/data # Persiste os certificados SSL
       - caddy_config:/config
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
     depends_on:
       - frontend
       - api
